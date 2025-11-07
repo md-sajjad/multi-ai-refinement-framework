@@ -1,0 +1,218 @@
+# Cursor AI Rules for Multi-AI Refinement Framework
+# This file defines the scope and guidelines for AI assistance in this project
+
+## Project Scope
+
+### Allowed Directories
+- `/Users/muddassar/code/multi-ai-refinement-framework/`
+  - This is the ONLY directory the AI should read from and write to
+  - All work must stay within this project boundary
+
+### Forbidden Directories
+- `/Users/muddassar/code/python.projects/` - NEVER access or modify
+- Any parent directories outside of `multi-ai-refinement-framework/`
+- Any sibling projects or directories
+
+## File Access Rules
+
+### Always Allowed
+- Read any file within the project directory
+- Edit any file within the project directory
+- Create new files within the project directory
+- Delete files within the project directory (when explicitly requested)
+
+### Never Allowed
+- Access files outside the project directory
+- Modify files in parent or sibling directories
+- Read or write to `/Users/muddassar/code/python.projects/`
+- Make changes to system files or global configurations
+
+## Project Structure
+
+```
+/Users/muddassar/code/multi-ai-refinement-framework/
+├── src/ai_refinement_framework/    # Core package code
+├── tests/                          # Test files
+├── examples/                       # Example scripts
+├── docs/                          # Documentation (if created)
+├── *.md                           # Markdown documentation
+├── pyproject.toml                 # Package configuration
+└── Other config files             # .gitignore, etc.
+```
+
+## Development Guidelines
+
+### Code Quality
+1. **Type Hints**: Always use type hints for function signatures
+2. **Docstrings**: Use Google-style docstrings for all public APIs
+3. **Testing**: Write tests for new features
+4. **Linting**: Code must pass Black, Ruff, and MyPy checks
+
+### Python Standards
+- **Python Version**: Target Python 3.9+
+- **Line Length**: 100 characters max
+- **Import Style**: Use absolute imports for external, relative for internal
+- **Style Guide**: Follow PEP 8 via Black formatter
+
+### Package Structure
+- **Core types**: Add to `src/ai_refinement_framework/core.py`
+- **Exceptions**: Add to `src/ai_refinement_framework/exceptions.py`
+- **Providers**: Add to `src/ai_refinement_framework/providers.py`
+- **Framework logic**: Add to `src/ai_refinement_framework/framework.py`
+- **Pipelines**: Add to `src/ai_refinement_framework/pipeline.py`
+- **Cost tracking**: Add to `src/ai_refinement_framework/cost.py`
+- **Public API**: Export from `src/ai_refinement_framework/__init__.py`
+
+### Testing
+- **Location**: All tests go in `tests/` directory
+- **Naming**: Test files must start with `test_`
+- **Coverage**: Aim for >90% code coverage
+- **Framework**: Use pytest
+
+### Documentation
+- **README.md**: Main project documentation
+- **QUICKSTART.md**: Quick start guide
+- **CONTRIBUTING.md**: Contribution guidelines
+- **Module docs**: Each module should have a descriptive docstring
+
+## AI Behavior Rules
+
+### When Making Changes
+1. **Read First**: Always read files before modifying them
+2. **Preserve Structure**: Maintain the established project structure
+3. **Update Tests**: Update or add tests when changing functionality
+4. **Check Imports**: Ensure all imports are correct after changes
+5. **Verify**: Test that code still works after modifications
+
+### When Creating New Files
+1. **Right Location**: Put files in the appropriate directory
+2. **Proper Headers**: Include module docstring at the top
+3. **Type Hints**: Use type hints from the start
+4. **Export**: Add to `__all__` in `__init__.py` if public API
+
+### When Deleting Files
+1. **Confirm Intent**: Only delete when explicitly requested
+2. **Update Imports**: Remove imports from other files
+3. **Update Tests**: Remove or update related tests
+4. **Update Docs**: Remove references in documentation
+
+### Communication
+1. **Explain Changes**: Clearly explain what you're doing and why
+2. **Show Context**: Use code references to show relevant code
+3. **Warn of Issues**: Alert user to potential problems
+4. **Suggest Alternatives**: Offer alternatives when appropriate
+
+## Specific Constraints
+
+### NEVER Do These Things
+- ❌ Edit files outside `/Users/muddassar/code/multi-ai-refinement-framework/`
+- ❌ Access `/Users/muddassar/code/python.projects/` directory
+- ❌ Modify global Python installations or system files
+- ❌ Change git configuration (user.name, user.email, etc.)
+- ❌ Force push to git repositories
+- ❌ Skip git hooks unless explicitly requested
+- ❌ Create files without proper structure or documentation
+- ❌ Break the public API without user approval
+
+### ALWAYS Do These Things
+- ✅ Stay within the project directory
+- ✅ Follow the established code structure
+- ✅ Use type hints and docstrings
+- ✅ Write or update tests for changes
+- ✅ Check for linting errors after changes
+- ✅ Maintain backward compatibility when possible
+- ✅ Document new features
+- ✅ Explain breaking changes clearly
+
+## File Modification Priority
+
+### High Priority (Frequently Modified)
+- `src/ai_refinement_framework/*.py` - Core package files
+- `tests/test_*.py` - Test files
+- `examples/*.py` - Example scripts
+- `README.md` - Main documentation
+
+### Medium Priority (Occasionally Modified)
+- `pyproject.toml` - Package configuration
+- `CHANGELOG.md` - Version history
+- `CONTRIBUTING.md` - Contribution guide
+- `.github/workflows/*.yml` - CI/CD configuration
+
+### Low Priority (Rarely Modified)
+- `LICENSE` - License file (only change if explicitly requested)
+- `.gitignore` - Git ignore patterns
+- `Makefile` - Build commands
+- `.pre-commit-config.yaml` - Pre-commit hooks
+
+## Import Guidelines
+
+### Internal Imports (Within Package)
+```python
+# Use relative imports
+from .core import Role, ModelTier
+from .exceptions import RoleNotConfiguredError
+from .providers import Provider
+```
+
+### External Imports (User-Facing)
+```python
+# Users import from package root
+from ai_refinement_framework import AIFramework, Role, ModelTier
+```
+
+## Testing Requirements
+
+### Unit Tests
+- Test each class and function independently
+- Mock external dependencies
+- Cover edge cases and error conditions
+
+### Integration Tests
+- Test component interactions
+- Use MockProvider for testing without API keys
+- Mark slow tests with `@pytest.mark.slow`
+
+### Test Coverage
+- Minimum 90% coverage required
+- All public APIs must be tested
+- Critical paths must have comprehensive tests
+
+## Documentation Standards
+
+### Code Documentation
+- **Module docstrings**: Describe module purpose and contents
+- **Class docstrings**: Describe class purpose and usage
+- **Method docstrings**: Include Args, Returns, Raises sections
+- **Type hints**: Required for all function signatures
+
+### Project Documentation
+- **README.md**: Overview, features, installation, usage
+- **QUICKSTART.md**: 5-minute getting started guide
+- **API docs**: Generated from docstrings (future)
+- **Examples**: Runnable code in `examples/` directory
+
+## Version Control
+
+### Commits
+- Use conventional commit messages (feat:, fix:, docs:, etc.)
+- Keep commits focused and atomic
+- Write clear commit messages
+
+### Branches
+- Work on feature branches when appropriate
+- Keep main branch stable
+- Don't force push to main
+
+## Summary
+
+**Primary Rule**: Only work within `/Users/muddassar/code/multi-ai-refinement-framework/`
+
+**Core Values**:
+1. **Quality**: Type hints, tests, documentation
+2. **Structure**: Follow established patterns
+3. **Compatibility**: Don't break existing code
+4. **Focus**: Stay within project boundaries
+
+This ensures the AI remains focused on the Multi-AI Refinement Framework project
+and doesn't accidentally modify other projects or system files.
+
